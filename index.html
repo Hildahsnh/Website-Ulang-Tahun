@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo">Hilda</div>
+    <nav>
+        <ul>
+            <li><a href="#musik">Musik</a></li>
+            <li><a href="#doa">Kartu Doa</a></li>
+            <li><a href="#galeri">Galeri Foto</a></li>
+            <li><a href="#game">Games</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero-section">
+    <div class="hero-left">
+        <h1>Happy Birthday Harid!!</h1>
+        <p>"Selamat ulang tahun, sayang. Ciee makin tua niehh, Semoga impian kamu yang pernah kamu bilang ke aku tercapai yaa, aamin"</p>
+    </div>
+    <div class="hero-right">
+        <figure class="polaroid-photo" style="--rotation: -6deg; --top: 10%; --left: 10%;">
+            <img src="img/foto1.jpeg" alt="Foto pasangan anime">
+        </figure>
+        <figure class="polaroid-photo" style="--rotation: 8deg; --top: 40%; --left: 30%;">
+            <img src="img/foto2.jpeg" alt="Foto pasangan muslim">
+        </figure>
+    </div>
+</section>
+
+<section id="musik" class="music-section">
+    <div class="section-container">
+        <div class="cake-container">
+            <img src="img/kue.png" alt="Kue Ulang Tahun 3D" class="cake-spin" />
+        </div>
+        
+        <div class="music-player-container">
+            <h3>HBD Sayang</h3>
+            <div class="video-placeholder">
+                <img src="img/foto4.jpeg" alt="Foto pasangan">
+            </div>
+            <audio controls>
+                <source src="lagu.mp3" type="audio/mpeg" />
+                Browser kamu tidak mendukung audio 😢
+            </audio>
+        </div>
+    </div>
+</section>
+
+
+<section id="doa" class="doa-section">
+    <div class="scallop-divider top"></div>
+    <div class="section-content">
+        <h2>Kartu Doa</h2>
+        <div class="doa-grid">
+            <div class="doa-card">
+                <p>Doa 1</p>
+                <p>Semoga kamu selalu dalam lindungan Tuhan</p>
+            </div>
+            <div class="doa-card">
+                <p>Doa 2</p>
+                <p>Semoga langkahmu ke depan dipenuhi hal-hal baik</p>
+            </div>
+            <div class="doa-card">
+                <p>Doa 3</p>
+                <p>Semoga kamu bahagia, di mana pun dan dengan siapa pun</p>
+            </div>
+            <div class="doa-card">
+                <p>Doa 4</p>
+                <p>Semoga segala impian dan usahamu tercapai</p>
+            </div>
+            <div class="doa-card">
+                <p>Doa 5</p>
+                <p>Semoga kamu diberi kekuatan untuk melewati hari-hari sulit</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="galeri" class="gallery-section">
+    <div class="scallop-divider top"></div>
+    <div class="section-content">
+        <h2>Galeri Foto</h2>
+        <div class="gallery-grid">
+            <div class="photo-container"><img src="img/foto9.jpg" alt="Foto 1" /></div>
+            <div class="photo-container"><img src="img/foto5.jpg" alt="Foto 2" /></div>
+            <div class="photo-container"><img src="img/foto4.jpeg" alt="Foto 3" /></div>
+            <div class="photo-container"><img src="img/foto7.jpg" alt="Foto 4" /></div>
+            <div class="photo-container"><img src="img/foto6.jpg" alt="Foto 5" /></div>
+            <div class="photo-container"><img src="img/foto2.jpeg" alt="Foto 6" /></div>
+            <div class="photo-container"><img src="img/foto1.jpeg" alt="Foto 7" /></div>
+            <div class="photo-container"><img src="img/foto3.jpeg" alt="Foto 8" /></div>
+        </div>
+    </div>
+</section>
+
+<section id="game" class="game-section">
+    <div class="scallop-divider top"></div>
+    <div class="section-content">
+        <h2>Games Roda Tantangan</h2>
+        <div class="wheel-container">
+            <canvas id="wheelCanvas" width="300" height="300"></canvas>
+            <button class="spin-btn" onclick="spin()">Putar Roda Cinta 💖</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    const canvas = document.getElementById("wheelCanvas");
+    const ctx = canvas.getContext("2d");
+    const options = ["Buat vidio ramdom, upload ke ig!", "Top up in aku robux", "Balikan", "Cium temen kamu, kirim bukti ke aku", "kasih uang 50k ke ade kamu", "Ceritain satu hal yang belum pernah kamu bilang ke aku", "call", "Bebass"];
+    let angle = 0;
+    
+    // Menggambar Roda
+    function drawWheel() {
+        const total = options.length;
+        const arc = (2 * Math.PI) / total;
+        for (let i = 0; i < total; i++) {
+            const start = i * arc;
+            const end = start + arc;
+            ctx.beginPath();
+            ctx.moveTo(150, 150);
+            ctx.arc(150, 150, 150, start, end);
+            ctx.fillStyle = i % 2 === 0 ? "#fbb1b1" : "#ffd6d6";
+            ctx.fill();
+            ctx.save();
+            ctx.translate(150, 150);
+            ctx.rotate(start + arc / 2);
+            ctx.fillStyle = "#000";
+            ctx.font = "14px Poppins";
+            ctx.textAlign = "center";
+            ctx.fillText(options[i], 150 * 0.7, 5); // Teks lebih ke dalam
+            ctx.restore();
+        }
+    }
+
+    // Fungsi untuk memutar roda
+    function spin() {
+        // Nonaktifkan tombol saat berputar
+        const spinBtn = document.querySelector('.spin-btn');
+        spinBtn.disabled = true;
+
+        // Reset transisi sebelum memutar
+        canvas.style.transition = 'none';
+        canvas.style.transform = `rotate(${angle}deg)`;
+
+        // Tambah putaran acak
+        let spinAngle = Math.floor(Math.random() * 360) + 3600; // Putar 10x lebih
+        angle += spinAngle;
+        
+        // Atur transisi
+        canvas.style.transition = "transform 5s cubic-bezier(0.2, 0.9, 0.4, 1)"; // Transisi lebih smooth
+        canvas.style.transform = `rotate(${angle}deg)`;
+
+        // Reaktifkan tombol setelah putaran selesai
+        setTimeout(() => {
+            spinBtn.disabled = false;
+            // Menghitung hasil (opsional)
+            const finalAngle = angle % 360;
+            const segmentAngle = 360 / options.length;
+            const selectedIndex = Math.floor( (360 - finalAngle + segmentAngle / 2) % 360 / segmentAngle );
+            alert(`Selamat! Kamu dapat: "${options[selectedIndex]}"`);
+        }, 5000); // Sesuaikan dengan durasi transisi
+    }
+
+    drawWheel();
+</script>
+
+</body>
+</html>
